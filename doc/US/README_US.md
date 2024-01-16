@@ -87,7 +87,7 @@ In the “groovy begin apm” sampler, the groovy code calls the ElasticApm API 
 <pre>
 Transaction transaction = ElasticApm.startTransaction();
 Scope scope = transaction.activate();
-transaction.setName(transactionName); // contient le Nom du JMeter Transaction Controller
+transaction.setName(transactionName); // contains JMeter Transaction Controller Name
 </pre>
 
 In the “groovy end apm” sampler, the groovy code calls the ElasticApm API (simplified version):
