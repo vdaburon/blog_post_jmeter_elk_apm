@@ -2,8 +2,8 @@
 
 ## US Version
 
-Look at this link [US Version](https://github.com/vdaburon/blog_post_jmeter_elk_apm/doc/US/README_US.md)
+Look at this link [US Version](https://github.com/vdaburon/blog_post_jmeter_elk_apm/blob/main/doc/FR/README_FR.md)
 
 ## FR (French) Version
 
-Look at this link [FR Version](https://github.com/vdaburon/blog_post_jmeter_elk_apm/doc/FR/README_US.md)
+Look at this link [FR Version](https://github.com/vdaburon/blog_post_jmeter_elk_apm/blob/main/doc/FR/README_FR.md)
