@@ -135,8 +135,8 @@ Groovy code records only 50% samples:
 
 <pre>
 import co.elastic.apm.api.ElasticApm;
-// maj de elastic.apm.transaction_sample_rate
 
+// update elastic.apm.transaction_sample_rate
 ElasticApm.setConfig("transaction_sample_rate","0.5");
 </pre>
 
