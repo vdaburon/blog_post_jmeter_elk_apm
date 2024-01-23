@@ -3,7 +3,7 @@
 ## Les avantages de ELK APM pour l’observation de l’environnement testé
 Mon utilisation de la solution d’observabilité Elastic Search Application Performance Monitoring (ELK APM) coïncide avec les projets qui sont développés à base de micro-services. C’est-à-dire en 2019 pour les projets sur lesquels j’étais responsable des tests de performance.
 
-A cette époque (2019) est sortie les premières versions de ELK APM.
+À cette époque (2019) est sortie les premières versions de ELK APM.
 
 J’ai été séduit par la facilité d’installation des agents, les nombreux protocoles supportés par l’agent Java (https://www.elastic.co/guide/en/apm/agent/java/current/supported-technologies-details.html) dont l’Apache HttpClient utilisé dans JMeter et aussi d’autres langages (GO, .Net, Node.js, PHP, Python, Ruby), les tableaux de bord de qualité dans Kibana pour la partie APM. 
 
@@ -11,7 +11,7 @@ Je trouvais que les informations affichées dans les tableaux de bord Kibana APM
 
 Le monitoring de l’agent Java est simple mais affiche déjà les informations essentielles sur le monitoring de l’OS de la machine et la JVM. 
 
-Le coté open source et la gratuité de la solution pour les fonctions principales de l’outil ont été également déterminantes.
+Le côté open source et la gratuité de la solution pour les fonctions principales de l’outil ont été également déterminantes.
 
 J’ai donc généralisé l’utilisation de la solution d’observabilité ELK APM dans les environnements de performance pour tous les projets. 
 
@@ -19,7 +19,7 @@ Avec ELK APM, je suis en mesure d’avoir les timelines des différents appels e
 
 J’ai également accès rapidement aux erreurs ou exceptions levées dans les applications java.
 
-## Pourquoi intégré ELK APM dans Apache JMeter
+## Pourquoi intégrer ELK APM dans Apache JMeter
 En plaçant les agents Java APM sur les applications web, on trouve dans les tableaux de bord Kibana les services appelés, les timelines. Cependant, on reste à un niveau appel API REST principalement, on n’a pas la notion de page.
 
 Par exemple, la page PAGE01 va faire les appels API suivants :
@@ -105,7 +105,7 @@ transaction.end();
 ### Déclarer l'agent java ELK APM
 Url pour télécharger l'agent apm : https://mvnrepository.com/artifact/co.elastic.apm/elastic-apm-agent
 
-Ajouter cet agent quelque part sur sur le filesystem (peut-être dans <JMETER_HOME>\lib mais pas obligatoire)
+Ajouter cet agent quelque part sur le filesystem (peut-être dans <JMETER_HOME>\lib mais pas obligatoire)
 
 Dans &lt;JMETER_HOME&gt;\bin modifier le jmeter.bat ou setenv.bat
 
@@ -126,7 +126,7 @@ Cette librairie est utilisée dans le code groovy
 Url pour trouver la librairie : https://mvnrepository.com/artifact/co.elastic.apm/apm-agent-api
 
 ## Recommandations sur l’impact de l’ajout de ELK APM dans JMeter
-L’agent APM va intercepter et modifier tous les appels des sampler http et ces informations seront stockés dans Elastic Search. Il est préférable de désactiver volontairement la récupération des éléments statiques (images, css, javaScript, font) qui peuvent générer un grand nombre d’appels mais qui ne sont pas très utiles dans l’analyse de la timeline.
+L’agent APM va intercepter et modifier tous les appels des samplers http et ces informations seront stockés dans Elastic Search. Il est préférable de désactiver volontairement la récupération des éléments statiques (images, css, javaScript, font) qui peuvent générer un grand nombre d’appels mais qui ne sont pas très utiles dans l’analyse de la timeline.
 
 Dans le cas de charge importante, il est conseillé de changer le paramètre elastic.apm.<code>elastic.apm.transaction_sample_rate</code> pour ne prendre qu’une partie des appels afin de ne pas saturer l’APM Server et Elastic Search.
 
