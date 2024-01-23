@@ -16,7 +16,7 @@ With ELK APM, I have the timelines of the different calls and exchanges between 
 
 I also have quick access to errors or exceptions thrown in Java applications.
 
-## Why integrated ELK APM in Apache JMeter
+## Why integrate ELK APM in Apache JMeter
 By adding Java APM agents to web applications, we find the services called timelines in the Kibana dashboards. However, we remain at a REST API call level mainly, we do not have the notion of page.
 
 For example, page PAGE01 will make the following API calls:
