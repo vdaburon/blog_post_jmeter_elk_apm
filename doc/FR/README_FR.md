@@ -1,7 +1,7 @@
 # Article en français pour le blog de https://elastic.co/fr/blog
 
 ## Les avantages de ELASTIC APM pour l’observation de l’environnement testé
-Mon utilisation de la solution d’observabilité Elastic Search Application Performance Monitoring (ELASTIC APM) coïncide avec les projets qui sont développés à base de micro-services. C’est-à-dire en 2019 pour les projets sur lesquels j’étais responsable des tests de performance.
+Mon utilisation de la solution Elastic Application Performance Monitoring (ELASTIC APM) coïncide avec les projets qui sont développés à base de micro-services. C’est-à-dire en 2019 pour les projets sur lesquels j’étais responsable des tests de performance.
 
 À cette époque (2019) est sortie les premières versions de ELASTIC APM.
 
@@ -13,7 +13,7 @@ Le monitoring de l’agent Java est simple mais affiche déjà les informations 
 
 Le côté open source et la gratuité de la solution pour les fonctions principales de l’outil ont été également déterminantes.
 
-J’ai donc généralisé l’utilisation de la solution d’observabilité ELASTIC APM dans les environnements de performance pour tous les projets. 
+J’ai donc généralisé l’utilisation de la solution ELASTIC APM dans les environnements de performance pour tous les projets. 
 
 Avec ELASTIC APM, je suis en mesure d’avoir les timelines des différents appels et échanges entre les web services, les requêtes SQL exécutées, les échanges de messages par file JMS et du monitoring simple. 
 
@@ -46,11 +46,11 @@ Une 3ème page PAGE03 va faire les appels suivants :
 
 On remarque que dans cet exemple le service2 est appelé dans les 3 pages différentes et de le service4 dans 2 pages.
 
-Si on regarde dans le tableau de bord Kibana pour le service2, on va trouver l’union des appels des 3 appels correspondant aux 3 pages mais on n’a pas la notion de page.
+Si on regarde dans le tableau de bord Kibana pour le service2, on va trouver l’union des appels des 3 appels correspondant aux 3 pages mais **on n’a pas la notion de page**.
 
 On ne peut pas répondre à « Dans cette page, quel est le découpage du temps dans les différents appels REST appelés » car pour un utilisateur de l’application la notion de temps de réponse de la page est importante.
 
-Le but de l’outil jmeter-elastic-apm est d’ajouter la notion de page existant dans JMeter sous la forme de Transaction Controller et démarrer la partie observabilité dans JMeter en créant une transaction APM et de propager cet identifiant de transaction (traceparent) par l’agent ELASTIC aux appels http REST des web services car l’agent APM reconnait l’Apache httpclient et peut l’instrumenter.
+Le but de l’outil jmeter-elastic-apm est **d’ajouter la notion de page existant dans JMeter** sous la forme de Transaction Controller et démarrer la partie observabilité dans JMeter en créant une transaction APM et de propager cet identifiant de transaction (traceparent) par l’agent ELASTIC aux appels http REST des web services car l’agent APM reconnait l’Apache httpclient et peut l’instrumenter.
 
 Dans l’appel http, l’agent apm va ajouter dans le header de la requête http l’identifiant de la transaction apm. Les headers ajoutés sont traceparent et elastic-apm-traceparent.
 
@@ -126,13 +126,13 @@ Cette librairie est utilisée dans le code groovy
 Url pour trouver la librairie : https://mvnrepository.com/artifact/co.elastic.apm/apm-agent-api
 
 ## Recommandations sur l’impact de l’ajout de ELASTIC APM dans JMeter
-L’agent APM va intercepter et modifier tous les appels des samplers http et ces informations seront stockés dans Elastic Search. Il est préférable de désactiver volontairement la récupération des éléments statiques (images, css, javaScript, font) qui peuvent générer un grand nombre d’appels mais qui ne sont pas très utiles dans l’analyse de la timeline.
+L’agent APM va intercepter et modifier tous les appels des samplers http et ces informations seront stockés dans Elastic Search. Il est préférable de désactiver volontairement la récupération des éléments statiques (images, css, javaScript, fonts) qui peuvent générer un grand nombre d’appels mais qui ne sont pas très utiles dans l’analyse de la timeline.
 
 Dans le cas de charge importante, il est conseillé de changer le paramètre elastic.apm.<code>elastic.apm.transaction_sample_rate</code> pour ne prendre qu’une partie des appels afin de ne pas saturer l’APM Server et Elastic Search.
 
-Ce paramètre <code>elastic.apm.transaction_sample_rate</code> peut être déclaré dans &lt;METER_HOME&gt;\jmeter.bat ou setenv.bat mais aussi dans un sampler JSR223 avec un peu de code groovy dans un setUp Thread Group.
+Ce paramètre <code>elastic.apm.transaction_sample_rate</code> peut être déclaré dans &lt;JMETER_HOME&gt;\jmeter.bat ou setenv.bat mais aussi dans un sampler JSR223 avec un peu de code groovy dans un setUp Thread Group.
 
-Code groovy pour prendre 50% de samples :
+Code groovy pour prendre 50% des samples :
 <pre>
 import co.elastic.apm.api.ElasticApm;
 // maj de elastic.apm.transaction_sample_rate
