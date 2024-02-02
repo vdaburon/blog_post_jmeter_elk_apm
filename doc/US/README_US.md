@@ -1,7 +1,7 @@
 # Blog post in English for site https://elastic.co/en/blog
 
 ## The advantages of ELASTIC APM for observing the tested environment
-My first use of the Elastic Search Application Performance Monitoring (ELASTIC APM) observability solution coincides with projects that are developed based on micro-services. In 2019 for the projects on which I was responsible for performance testing.
+My first use of the Elastic Application Performance Monitoring (ELASTIC APM) solution coincides with projects that are developed based on micro-services. In 2019 for the projects on which I was responsible for performance testing.
 
 At this time (2019) the first versions of ELASTIC APM were released.
 I was attracted by easy installation of agents, the numerous protocols supported by the Java agent (https://www.elastic.co/guide/en/apm/agent/java/current/supported-technologies-details.html) including the Apache HttpClient used in JMeter and other languages (GO, .Net, Node.js, PHP, Python, Ruby), the dashboards quality in Kibana for the APM.
@@ -10,7 +10,7 @@ I found the information displayed in the Kibana APM dashboards to be relevant an
 
 The open-source aspect and the free solution for the main functions of the tool were also decisive.
 
-I generalized the use of the ELASTIC APM observability solution in performance environments for all projects. 
+I generalized the use of the ELASTIC APM solution in performance environments for all projects. 
 
 With ELASTIC APM, I have the timelines of the different calls and exchanges between web services, the SQL queries executed, the exchange of messages by JMS file and monitoring. 
 
@@ -42,11 +42,11 @@ A 3rd page PAGE03 will make the following calls:
 </pre>
 
 In this example service2 is called in 3 different pages and service4 in 2 pages.
-If we look in the Kibana dashboard for service2, we will find the union of the calls of the 3 calls corresponding to the 3 pages but we do not have the notion of page.
+If we look in the Kibana dashboard for service2, we will find the union of the calls of the 3 calls corresponding to the 3 pages but **we don't have the notion of page**.
 
 We cannot answer “In this page, what is the breakdown of time in the different REST calls called” because for a user of the application the notion of page response time is important.
 
-The goal of the jmeter-elastic-apm tool is to add the notion of an existing page in JMeter in the  Transaction Controller and start the observability in JMeter by creating an APM transaction and propagating this transaction identifier (traceparent) with the ELASTIC agent to http REST request to web services because the APM Agent recognizes the Apache httpclient library and can instrument it.
+The goal of the jmeter-elastic-apm tool is to **add the notion of an existing page** in JMeter in the  Transaction Controller and start in JMeter by creating an APM transaction and propagating this transaction identifier (traceparent) with the ELASTIC agent to http REST request to web services because the APM Agent recognizes the Apache httpclient library and can instrument it.
 
 In the http request, the APM Agent will add the identifier of the apm transaction to the header of the http request. The headers added are traceparent and elastic-apm-traceparent.
 
@@ -127,7 +127,7 @@ The APM Agent will intercept and modify all http sampler calls and this informat
 
 It is preferable to voluntarily disable the http request of static elements (images, css, JavaScript, fonts) which can generate a large number of requests but which are not very useful in analyzing the timeline.
 
-In the case of heavy load testing, it is recommended to change the <code>elastic.apm.transaction_sample_rate</code> parameter to only take part of the calls so as not to saturate the APM Server and Elastic Search.
+In the case of heavy load testing, it's recommended to change the <code>elastic.apm.transaction_sample_rate</code> parameter to only take part of the calls so as not to saturate the APM Server and Elastic Search.
 
 This <code>elastic.apm.transaction_sample_rate</code> parameter can be declared in &lt;JMETER_HOME&gt;\jmeter.bat or setenv.bat but also in a JSR223 sampler with a short groovy code in a setUp Thread Group.
 
@@ -141,7 +141,7 @@ ElasticApm.setConfig("transaction_sample_rate","0.5");
 </pre>
 
 ## Conclusion
-The jmeter-elastic-apm tool allows you to easily integrate the ELASTIC APM observability solution into JMeter and add the notion of page in the timelines of Kibana APM dashboards.
+The jmeter-elastic-apm tool allows you to easily integrate the ELASTIC APM solution into JMeter and add the notion of page in the timelines of Kibana APM dashboards.
 
 ELASTIC APM + Apache JMeter is an excellent solution for understanding how the environment works during a performance test with simple monitoring, quality dashboards, time breakdown timelines in the different distributed application layers, display of exceptions in web services.
 
